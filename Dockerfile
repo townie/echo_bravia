@@ -1,12 +1,13 @@
 FROM python:3.5
 
-RUN pip3 install git+https://github.com/aparraga/braviarc.git
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
 
-RUN pip install Flask
-
-RUN pip install wakeonlan
+# Bravia Keys
+ENV BRAVIA_PIN 7793
+ENV BRAVIA_IP 192.168.1.158
+ENV BRAVIA_MAC FC:F1:52:4B:2B:2A
 
 
 COPY app.py app.py
-
 CMD python app.py
